@@ -1,0 +1,153 @@
+<ol class="breadcrumb">
+    <!--<li><a href="#">Home</a></li>-->
+    <!--<li><a href="#">Library</a></li>-->  
+    <li><a href="#">Inicio</a></li>
+    <li class="active">Nuevo</li>
+</ol>
+
+<nav>
+    <ul class="pager">
+        <li class="previous"><a href="javascript:window.history.back()"><span aria-hidden="true">&larr;</span>Atr&aacute;s</a></li>    
+    </ul>
+</nav>
+
+<div class="panel-body">
+    <ul class="nav nav-tabs">
+        <li><a href="#/servicios" data-toggle="tab">Servicios</a>
+        </li>
+        <li class="active"><a href="#/agregar-servicio" data-toggle="tab">Nuevo</a>
+        </li>
+        <li class=""><a href="#/" data-toggle="tab">Pendientes</a>
+        </li>
+        <li class=""><a href="#/reporte-servicio" data-toggle="tab">Reporte</a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="tab-pane fade active in" id="home">
+            <div class="page-header">
+                <h4>Servicios <small>Nuevo Servicio</small></h4>
+            </div>
+
+            <form role="form" id="nuevo-servicio-ajax-form">
+                <div data-ng-controller="ServicioController">            
+                    <div class="row">                        
+                        <div class="col-md-4">
+                            <div class="form-group" id="content_fe_servicio" ng-controller="Datepicker">                                                
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-link" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                    <!--<button type="button" class="btn btn-circle" style="padding: 4px 12px; margin-left: -31px;" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>-->
+                                </span>
+                                <input disabled="" required="" name="fe_servicio" id="fe_servicio" placeholder="Fecha del Servicio" type="text" class="form-control" datepicker-popup="{{format}}" show-button-bar="false" ng-model="servicio.fe_servicio" is-open="opened" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Cerrar" />
+                                <!--<input name="fe_servicio" id="fe_servicio" type="text" class="form-control" style="height: 23px; float:left;" id="fechaFinalizacionFaseII" datepicker-popup="{{format}}" show-button-bar="false" ng-model="servicio.fe_servicio" is-open="opened" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Cerrar" />-->                 
+                            </div>  
+                        </div> 
+                    </div> 
+                    <div class="row">                        
+                        <div class="col-md-3">  
+                            <fieldset class="form-group">
+                                <label for="tiposervicio">Tipo de Servicio</label>
+                                <select class="form-control" id="tiposervicio">
+                                    <option value="1">Recogida</option>
+                                    <option value="2">Reparto</option>
+                                    <option value="3">P/Horas</option>                                    
+                                </select>
+                            </fieldset>
+                        </div>                        
+                        <div class="col-md-3">
+                            <fieldset class="form-group">
+                                <label for="clase_servicio">Clase de Servicio</label>
+                                <select class="form-control" id="clase_servicio">
+                                    <option value="1">Individual</option>                                    
+                                    <option value="2">Colectivo</option>                                    
+                                </select>
+                            </fieldset>
+                        </div>
+
+                        <div class="col-md-3">
+                            <fieldset class="form-group">
+                                <label for="clase_servicio">Festivo</label>
+                                <select class="form-control" id="clase_servicio">
+                                    <option value="1">Si</option>                                    
+                                    <option value="2">No</option>                                    
+                                </select>
+                            </fieldset>
+                        </div>
+                    </div>                        
+                    <!--HORA DE SERVICIO-->
+                    <div class="row">
+                        <div class="col-md-4" data-ng-controller="ControllerHorarios" data-ng-init="getAllHours()">
+                            <fieldset class="form-group">                                
+                                <label>H/Reporte</label>
+                                <angucomplete id="hr_reporte" placeholder="Ingrese la Hora" pause="100" localdata="horas" searchfields="hora" titlefield="hora" minlength="1" inputclass="form-control form-control-small" matchclass="highlight" />                                
+                            </fieldset>
+                        </div> 
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6" data-ng-controller="ClienteController" data-ng-init="getAllClients()">                        	                                                        
+                            <div class="form-group">                                
+                                <label for="cedula_cliente">Cliente / Razon Social</label>
+                                <angucomplete placeholder="Nombre del cliente" pause="100" selectedobject="selectedClient" localdata="cliente" searchfields="nb_cliente" titlefield="nb_cliente" minlength="1" inputclass="form-control form-control-small" matchclass="highlight"/>                                                                
+                            </div>
+                            <div ng-show="selectedClient">                                
+                                <!--<input disabled="true" ng-show="true" type="text" class="form-control" id="cedula_cliente" name="cedula_cliente" value="{{selectedClient.originalObject.nu_cedula}}" ng-model="servicio.cedula_cliente"/>-->
+                                <span class="bold-span"><a href="#/"><i class="glyphicon glyphicon-ok"></i> Ver {{selectedClient.originalObject.nu_cedula}}</a></span>
+                            </div>  
+                        </div>                           
+                        <div class="col-md-3">                            
+                            <fieldset class="form-group">
+                                <label for="clase_servicio">Recargo</label>                                
+                                <select class="form-control" ng-model="is_recarga">
+                                    <option value="Si">Si</option>                                    
+                                    <option value="No">No</option>                                    
+                                </select>
+                            </fieldset>
+                        </div>     
+                        <div class="col-md-3" ng-switch on="is_recarga">
+                            <fieldset class="form-group" ng-switch-when="Si">
+                                <label>COP</label> 
+                                <input required="" placeholder="0.00 COP" type="text" id="recargo" name="recargo" class="form-control" ng-model="servicio.recargo" required>                    
+                            </fieldset>
+                            <fieldset ng-switch-default="default">                                
+                            </fieldset>
+                        </div>  
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">                        
+                            <div class="form-group">
+                                <label>Direccion Origen</label> 
+                                <input required=""  placeholder="Ingrese los datos" type="text" id="dir_origen" name="dir_origen" class="form-control" ng-model="servicio.dir_origen" required>                    
+                            </div>  				                        
+                        </div>
+                        <div class="col-md-6">                        
+                            <div class="form-group">
+                                <label>Direccion Destino</label> 
+                                <input required="" placeholder="Ingrese los datos" type="text" id="dir_destino" name="dir_destino" class="form-control" ng-model="servicio.dir_destino" required>                    
+                            </div>  				                        
+                        </div>  
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">                            
+                            <div class="form-group">
+                                <label>Observacion</label> 
+                                <textarea rows="10" style="width: 100%; height: 100%; resize: none" placeholder="Ingrese los datos" type="text" name="txt_observacion" id="txt_observacion" class="form-control my-input" ng-model="servicio.txt_observacion" ></textarea>
+                            </div>  				                            
+                        </div>                   
+                    </div>
+
+                    <hr />
+
+                    <button class="btn btn-default" ng-click="GenerarServicio(servicio)">Generar Servicio</button>
+                    <button type="button" class="btn btn-danger">Cancelar</button>	
+
+                    <br />
+                    <br />
+                    <br />
+                </div>
+            </form>	                  
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,48 @@
+<ol class="breadcrumb">
+    <li><a href="#">Inicio</a></li>
+    <li class="active">Vehiculos</li>
+</ol>
+
+<nav>
+    <ul class="pager">
+        <li class="previous"><a href="javascript:window.history.back()"><span aria-hidden="true">&larr;</span>Atr&aacute;s</a></li>    
+    </ul>
+</nav>
+
+<div class="panel-body">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#/vehiculos" data-toggle="tab">Vehiculos</a>
+        </li>
+        <li class=""><a href="#/agregar-vehiculo" data-toggle="tab">Nuevo</a>
+        </li>
+        <li class=""><a href="#/" data-toggle="tab">Pendientes</a>
+        </li>
+        <li class=""><a href="#/reporte-vehiculos" data-toggle="tab">Reporte</a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="tab-pane fade active in" id="home">
+            <div class="page-header">
+                <h4>Vehiculos <small>Lista de vehiculos disponibles</small></h4>
+            </div>
+            <div data-ng-controller="ControllerVehiculos" data-ng-init="getAllVehiculos()">      
+                <!--Table--> 
+                <table id="tablaAllVehiculo" class="display" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th style="width: 5px;">Nº Vehiculo</th>
+                            <th style="width: 10px;">Status</th>
+                            <th style="width: 10px;">Placa</th>
+                            <th style="width: 20px;">Clase</th>
+                            <th style="width: 15px;">Marca</th>
+                            <th style="width: 20px;">Modelo</th>
+                            <th style="width: 10px;">Detalle</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,45 @@
+<ol class="breadcrumb">
+    <li><a href="#">Inicio</a></li>
+    <li class="active">Servicios</li>
+</ol>
+
+<nav>
+    <ul class="pager">
+        <li class="previous"><a href="javascript:window.history.back()"><span aria-hidden="true">&larr;</span>Atr&aacute;s</a></li>    
+    </ul>
+</nav>
+
+<div class="panel-body">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#/servicios" data-toggle="tab">Servicios</a>
+        </li>
+        <li class=""><a href="#/agregar-servicio" data-toggle="tab">Nuevo</a>
+        </li>
+        <li class=""><a href="#/" data-toggle="tab">Pendientes</a>
+        </li>
+        <li class=""><a href="#/reporte-servicio" data-toggle="tab">Reporte</a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="tab-pane fade active in" id="home">
+            <div class="page-header">
+                <h4>Servicios <small>Lista de servicios</small></h4>
+            </div>
+            <div data-ng-controller="ServicioController" data-ng-init="getAllServices()">      
+                <!--Table--> 
+                <table id="tablaAllservice" class="display" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th style="width: 5px;">Nº Servicio</th>
+                            <th style="width: 10px;">Fecha</th>
+                            <th style="width: 120px;">Destino</th>
+                            <th style="width: 15px;">Detalle</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

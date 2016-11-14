@@ -1,0 +1,224 @@
+<ol class="breadcrumb">
+    <!--<li><a href="#">Home</a></li>-->
+    <!--<li><a href="#">Library</a></li>-->  
+    <li><a href="#">Inicio</a></li>
+    <li><a href="#">Conductor</a></li>
+    <li class="active">Nuevo</li>
+
+</ol>
+
+<nav>
+    <ul class="pager">
+        <li class="previous"><a href="javascript:window.history.back()"><span aria-hidden="true">&larr;</span>Atr&aacute;s</a></li>    
+    </ul>
+</nav>
+
+<div class="panel-body">
+    <ul class="nav nav-tabs">
+        <li class=""><a href="#/conductores" data-toggle="tab">Conductor</a>
+        </li>
+        <li class="active"><a href="#/agregar-conductor" data-toggle="tab">Nuevo</a>
+        </li>
+        <li class=""><a href="#/" data-toggle="tab">Pendientes</a>
+        </li>
+        <li class=""><a href="#/reporte-conductor" data-toggle="tab">Reporte</a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="tab-pane fade active in" id="home">
+            <div class="page-header">
+                <h4>Conductor <small>Nuevo Conductor</small></h4>
+            </div>
+
+            <form role="form" id="nuevo_servicio_ajax_form" name="nuevo_servicio_ajax_form" novalidate="">
+                <div data-ng-controller="ControllerConductor">            
+                    <div class="row">                                         
+                        <div class="col-md-4">
+                            <div class="form-group">                                
+                                <fieldset class="form-group">
+                                    <label>Tipo de Identificacion</label> 
+                                    <select class="form-control" id="clase_vehiculo" ng-model="conductor.tipo_identificacion" required="">
+                                        <option value="CEDULA CIUDADANIA">Cedula Ciudadania</option>
+                                        <option value="PASAPORTE">Pasaporte</option>
+                                        <option value="CEDULA EXTRANGERIA">Cedula Extrangeria</option>                                    
+                                        <option value="LINE">-----------------</option>                                    
+                                        <option value="OTRO">OTRO...</option>                                    
+                                    </select>
+                                </fieldset>
+                            </div>  
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Nº Identificacion</label> 
+                                <input required=""  placeholder="Identificacion" type="text" id="nu_identificacion" name="nu_identificacion" class="form-control" ng-model="conductor.nu_identificacion" required>                    
+                            </div>  
+                        </div>                         
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label>Expedida en</label> 
+                                <input  placeholder="Expedida en" type="text" id="identificacion_expedida_en" name="identificacion_expedida_en" class="form-control" ng-model="conductor.identificacion_expedida_en" />                    
+                            </div>  
+                        </div>
+                    </div>                        
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Primer Apellido</label> 
+                                <input required=""  placeholder="Primer Apellido" type="text" id="primer_apellido" name="primer_apellido" class="form-control" ng-model="conductor.primer_apellido">                    
+                            </div>  
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Segundo Apellido</label> 
+                                <input  placeholder="Segundo Apellido" type="text" id="segundo_apellido" name="segundo_apellido" class="form-control" ng-model="conductor.segundo_apellido">                    
+                            </div>  
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Primer Nombre</label> 
+                                <input required=""  placeholder="Primer Nombre" type="text" id="primer_nombre" name="primer_nombre" class="form-control" ng-model="conductor.primer_nombre" required>                    
+                            </div>  
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Segundo Nombre</label> 
+                                <input  placeholder="Segundo Nombre" type="text" id="segundo_nombre" name="segundo_nombre" class="form-control" ng-model="conductor.segundo_nombre">                    
+                            </div>  
+                        </div>
+                    </div> 
+                    <div class="row">   
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Direccion</label> 
+                                <input  placeholder="Direccion" type="text" id="direccion" name="direccion" class="form-control" ng-model="conductor.direccion" required>                    
+                            </div>  
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>Telefono</label> 
+                                <input required=""  placeholder="Nº Contacto" type="text" id="nu_telefono" name="nu_telefono" class="form-control" ng-model="conductor.nu_telefono" required>                    
+                            </div>  
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group" id="content_fe_servicio" ng-controller="Datepicker">                                                
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-link" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>                                    
+                                </span>
+                                <input name="fecha_contratacion" id="fecha_contratacion" placeholder="Fecha de vinculacion" type="text" class="form-control" datepicker-popup="{{format}}" show-button-bar="false" ng-model="conductor.fecha_contratacion" is-open="opened" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Cerrar" />                                
+                            </div>  
+                        </div> 
+                    </div>
+                    <div class="row">                                               
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Licencia Conduccion</label> 
+                                <input  placeholder="Lic. Conduccion" type="text" id="licencia_conduccion" name="licencia_conduccion" class="form-control" ng-model="conductor.licencia_conduccion">                    
+                            </div>  
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label>Expedida en </label> 
+                                <input  placeholder="Exp. en" type="text" id="expedida_en" name="expedida_en" class="form-control" ng-model="conductor.expedida_en">                    
+                            </div>  
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">                                
+                                <fieldset class="form-group">
+                                    <label>Categoria Licencia</label> 
+                                    <select class="form-control" id="categoria_licencia" ng-model="conductor.categoria_licencia">
+                                        <option value="1">Recogida</option>
+                                        <option value="2">Reparto</option>                                                
+                                    </select>
+                                </fieldset>
+                            </div>  
+                        </div>
+                    </div>                                           
+                    <div class="row">                                                
+                        <div class="col-md-5">
+                            <div class="form-group" id="content_fecha_expedicion" ng-controller="Datepicker">                                                
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-link" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>                                    
+                                </span>
+                                <input name="venc_lic_conduccion" id="venc_lic_conduccion" placeholder="Venc. Lic. Conduccion" type="text" class="form-control" datepicker-popup="{{format}}" show-button-bar="false" ng-model="conductor.venc_lic_conduccion" is-open="opened" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Cerrar" />                                
+                            </div>  
+                        </div> 
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Grupo Sanguineo / RH</label> 
+                                <input  placeholder="Grupo Sanguineo / RH" type="text" id="grupo_sanguineo_rh" name="grupo_sanguineo_rh" class="form-control" ng-model="conductor.grupo_sanguineo_rh">                    
+                            </div>  
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Pasado Judicial Nº</label> 
+                                <input  placeholder="Nº Pasado Judicial" type="text" id="pasado_judicial" name="pasado_judicial" class="form-control" ng-model="conductor.pasado_judicial">                    
+                            </div>  
+                        </div>
+                    </div>  
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group" id="venc_pasado_judicial" ng-controller="Datepicker">                                                
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-link" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>                                    
+                                </span>
+                                <input required="" name="venc_pasado_judicial" id="venc_pasado_judicial" placeholder="Venc. P/ Judicial" type="text" class="form-control" datepicker-popup="{{format}}" show-button-bar="false" ng-model="conductor.venc_pasado_judicial" is-open="opened" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Cerrar" />                                
+                            </div>  
+                        </div>                       
+                    </div>
+                    <hr />
+                    <div class="row">
+                         <div class="col-md-4">
+                            <div class="form-group">                                
+                                <fieldset class="form-group">
+                                    <label>EPS</label> 
+                                    <select class="form-control" id="nu_eps" ng-model="conductor.eps.nu_eps">
+                                        <option value="1">Recogida</option>
+                                        <option value="2">Reparto</option>                                                
+                                    </select>
+                                </fieldset>
+                            </div>  
+                        </div>
+                         <div class="col-md-4">
+                            <div class="form-group">                                
+                                <fieldset class="form-group">
+                                    <label>Fondo de Pension</label> 
+                                    <select class="form-control" id="nu_fondo_pension" ng-model="conductor.nu_fondo_pension">
+                                        <option value="1">Recogida</option>
+                                        <option value="2">Reparto</option>                                                
+                                    </select>
+                                </fieldset>
+                            </div>  
+                        </div>
+                         <div class="col-md-4">
+                            <div class="form-group">                                
+                                <fieldset class="form-group">
+                                    <label>Riesgos Profesionales</label> 
+                                    <select class="form-control" id="nu_riesgos_profesionales" ng-model="conductor.nu_riesgos_profesionales">                                                                                                         
+                                        <option value="1">Recogida</option>
+                                        <option value="2">Reparto</option>                                                
+                                    </select>
+                                </fieldset>
+                            </div>  
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label>Observaciones</label> 
+                                <input type="text"  id="txt_observacion" name="txt_observacion" class="form-control" ng-model="conductor.txt_observacion">                    
+                            </div>   
+                        </div>
+                    </div>
+                    <hr />
+                    <button class="btn btn-default" ng-click="agregarConductor(conductor)" ng-disabled="nuevo_servicio_ajax_form.$invalid">Guardar Conductor</button>
+                    <button type="button" class="btn btn-danger">Cancelar</button>	
+                    <br />
+                    <br />
+                    <br />
+                </div>
+            </form>	
+        </div>
+    </div>
+</div>
+

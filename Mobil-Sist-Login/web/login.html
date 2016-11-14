@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" ng-app="mobilsis">
+    <head>
+        <meta charset="UTF-8">
+            <title>login test</title>        
+            <script src="js/angular.min.js" type="text/javascript"></script>
+            <script src="js/jquery-1.11.3.js" type="text/javascript"></script>
+            <script src="js/angular-cookies.min.js" type="text/javascript"></script>
+            <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+            <!--<script src="js/jquery.cookie.js" type="text/javascript"></script>-->
+
+            <script src="js/logginModule.js" type="text/javascript"></script>
+            <script src="js/mobil-sis.js" type="text/javascript"></script>
+
+            <!--<script src="js/login-module.js" type="text/javascript"></script>-->
+            <!--<script src="js/jbpm_eiy.js" type="text/javascript"></script>-->                        
+
+            <script src="js/angular-route.min.js" type="text/javascript"></script>
+            <!--<script src="js/ui-bootstrap-tpls-0.13.0.min.js" type="text/javascript"></script>-->
+            <script src="js/angular-locale_es-ve.js" type="text/javascript"></script>
+
+            <script src="js/bootstrap.min.js" type="text/javascript"></script>
+
+
+    </head>
+    <body ng-controller="ControllerApplication" style="background: #f4f4f4">
+        <!--Autenticacion-->
+        <div ng-if="!currentUser" ng-controller="ControllerLogin">
+            <div class="container-fluid">   
+                <div class="container">                
+                    <div id="loginbox" style="margin-top:50px; margin-left: 35%; margin-right: 35%">                    
+                        <div class="panel panel-default" >
+                            <div class="panel-heading" style="background-color: #cccccc">
+                                <div class="panel-title">Iniciar Sesion</div>
+                                <div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="#">¿Olvido su contraseña?</a></div>                                                
+                            </div>     
+                            <!--<img style="width: 340px; margin-top: -5px" src="imagenes-aplicacion/imageLogin.png" alt=""/>-->
+                            <div style="padding-top:30px" class="panel-body" >                                                                                               
+                                <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+                                <form id="loginform" class="form-horizontal" role="form">
+                                    <form class="form-horizontal" role="form" 
+                                          name="loginForm"
+                                          method="post"
+                                          ng-submit="login(credentials)">
+                                        <div style="margin-bottom: 25px" class="input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                            <input id="username" ng-model="credentials.username" required type="text" class="form-control" name="username" value="" placeholder="Indicador">                                        
+                                        </div>
+                                        <div style="margin-bottom: 25px" class="input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                            <input id="password" type="password" class="form-control"  ng-model="credentials.password" required name="password" placeholder="clave">
+                                        </div>
+
+                                        <div class="alert alert-danger alert-dismissable" id="divDataEmpty" style="margin-top: 0%">
+                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                            <br />
+                                            <strong>Error : </strong>{{errorMessage}}
+                                            <br />
+                                        </div>                                        
+
+                                        <div class="input-group">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input id="login-remember" type="checkbox" name="remember" value="0" /> Recuerdame
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div style="margin-top:10px" class="form-group">                               
+                                            <div class="col-sm-12 controls">
+                                                <button type="submit" ng-click="login(credentials)" class="btn btn-default" >Iniciar Session</button>                                                                    
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-12 control">
+                                                <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
+                                                    ¿Todavía no tienes una cuenta? 
+                                                    <a href="#" onClick="$('#loginbox').hide();
+                                                                            $('#signupbox').show()">
+                                                        Registrate aquí.!
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>    
+                                    </form>     
+                            </div>                     
+                        </div>  
+                    </div>
+                </div>  
+            </div> 
+        </div> 
+
+        <div ng-if="currentUser" style="margin-left: 15%; margin-right: 15%">
+            <div ng-controller="ControllerLogin" ng-switch on="currentUser[0].authPermission">
+                <div ng-switch-when="ADMIN">
+                    <div class="row">
+                        <!--EN CASO DE SER ADMIN-->
+                    </div>    
+
+                    <div ng-switch-default style="margin-top: 5%">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="list-group">                                        
+                                    <a href="#/" class="list-group-item disabled">Inicio</a>
+                                    <a href="#/tareasPersonalesNoiniciadas" id="tareasNIniciadas" ng-click="setOpcion('Reserved', 0)" class="list-group-item">No Iniciadas <span class="badge">{{countNoIni}}</span></a>
+                                    <a href="#/tareasPersonalesEnejecucion" id="tareasPEjecucion" ng-click="setOpcion('InProgress', 0)" class="list-group-item">En ejecuci&oacute;n <span class="badge">{{countEjec}}</span></a>
+                                    <a href="#/" class="list-group-item disabled"> -- </a>
+                                    <a href="#/tareasPersonalesCulminadas" id="tareasNIniciadas" ng-click="logout()" class="list-group-item">Salir <span class="badge">{{countCulmin}}</span></a>                        
+                                </div>                                        
+                            </div>
+                            <div class="col-md-10" ng-view>                                    
+                                <!-- 					show all views -->
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <script>
+                    $("#divDataEmpty").hide();
+        </script>
+    </body>
+</html>

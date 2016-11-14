@@ -1,0 +1,219 @@
+<ol class="breadcrumb">    
+    <li><a href="#">Inicio</a></li>
+    <li class="active">Servicios</li>
+</ol>
+
+<nav>
+    <ul class="pager">
+        <li class="previous"><a href="javascript:window.history.back()"><span aria-hidden="true">&larr;</span>Atr&aacute;s</a></li>    
+    </ul>
+</nav>
+
+<div data-ng-controller="ControllerVehiculos" data-ng-init="getVehiculoId()">     
+    <div class="panel-body">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#/vehiculos" data-toggle="tab">Vehiculo <span class="badge">{{vehiculo.nu_placa}}</span></a>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane fade active in" id="home">
+                <div class="page-header">                
+
+                    <form role="form" id="nuevo_servicio_ajax_form" name="nuevo_servicio_ajax_form" novalidate="">
+                        <div>            
+                            <div class="row">                        
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label>Placa</label> 
+                                        <input required=""  placeholder="placa" type="text" id="nu_placa" name="nu_placa" value="{{vehiculo.nu_placa}}" class="form-control" ng-model="vehiculo.nu_placa" required>                    
+                                    </div>  
+                                </div> 
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Matriculado</label> 
+                                        <input  placeholder="Matriculado en" type="text" id="matriculado_en" name="matriculado_en" value="{{vehiculo.matriculado_en}}" class="form-control" ng-model="vehiculo.matriculado_en">                    
+                                    </div>  
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">                                
+                                        <fieldset class="form-group">
+                                            <label>Clase Vehiculo</label> 
+                                            <select class="form-control" id="clase_vehiculo" ng-model="vehiculo.clase_vehiculo" required="">
+                                                <option value="Automovil">Automovil</option>
+                                                <option value="Track">Track</option>
+                                                <option value="Pick-up">Pick-up</option>                                    
+                                                <option value="Vans">Vans</option>                                    
+                                                <option value="Autobus">Autobus</option>                                    
+                                            </select>
+                                        </fieldset>
+                                    </div>  
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">                                
+                                        <fieldset class="form-group">
+                                            <label>Tipo Vehiculo</label> 
+                                            <select class="form-control" id="tipo" ng-model="vehiculo.tipo">
+                                                <option value="1">Recogida</option>
+                                                <option value="2">Reparto</option>
+                                                <option value="3">P/Horas</option>                                    
+                                            </select>
+                                        </fieldset>
+                                    </div>  
+                                </div>
+                            </div> 
+                            <div class="row">   
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Marca</label> 
+                                        <input required=""  placeholder="Marca" type="text" id="marca" value="{{vehiculo.marca}}" name="marca" class="form-control" ng-model="vehiculo.marca" required>                    
+                                    </div>  
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Modelo</label> 
+                                        <input required=""  placeholder="Modelo" type="text" id="modelo" name="modelo" value="{{vehiculo.modelo}}" class="form-control" ng-model="vehiculo.modelo" required>                    
+                                    </div>  
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Color</label> 
+                                        <input required=""  placeholder="Color" type="text" id="color" name="color" value="{{vehiculo.color}}" class="form-control" ng-model="vehiculo.color" required>                    
+                                    </div>  
+                                </div>
+                            </div>
+                            <div class="row"> 
+                                <div class="col-md-4">
+                                    <div class="form-group" id="content_fe_servicio" ng-controller="Datepicker">                                                
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-link" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>                                    
+                                        </span>
+                                        <input disabled="" name="fecha_vinculacion" value="{{vehiculo.fecha_vinculacion}}" id="fecha_vinculacion" placeholder="Fecha de vinculacion" type="text" class="form-control" datepicker-popup="{{format}}" show-button-bar="false" ng-model="vehiculo.fecha_vinculacion" is-open="opened" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Cerrar" />                                
+                                    </div>  
+                                </div>                       
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Serial Chasis</label> 
+                                        <input  placeholder="S/ Chasis" type="text" id="nu_serial_chasis" value="{{vehiculo.nu_serial_chasis}}" name="nu_serial_chasis" class="form-control" ng-model="vehiculo.nu_serial_chasis">                    
+                                    </div>  
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Serial Motor</label> 
+                                        <input  placeholder="S/ Motor" type="text" id="serial_motor" name="serial_motor" value="{{vehiculo.serial_motor}}" class="form-control" ng-model="vehiculo.serial_motor">                    
+                                    </div>  
+                                </div>
+                            </div>                        
+                            <!--HORA DE SERVICIO-->
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Tarjeta Propiedad</label> 
+                                        <input placeholder="T/ Propiedad" type="text" id="tarjetaPropiedad" value="{{vehiculo.tarjetaPropiedad}}" name="tarjetaPropiedad" class="form-control" ng-model="vehiculo.tarjetaPropiedad">                    
+                                    </div>  
+                                </div>                        
+                                <div class="col-md-4">
+                                    <div class="form-group" id="content_fecha_expedicion" ng-controller="Datepicker">                                                
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-link" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>                                    
+                                        </span>
+                                        <input required="" name="fecha_expedicion" value="{{vehiculo.fecha_expedicion}}" id="fecha_expedicion" placeholder="Fecha de expedicion" type="text" class="form-control" datepicker-popup="{{format}}" show-button-bar="false" ng-model="vehiculo.fecha_expedicion" is-open="opened" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Cerrar" />                                
+                                    </div>  
+                                </div> 
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Nº SOAT</label> 
+                                        <input  placeholder="Nº SOAT" type="text" value="{{vehiculo.nu_soat}}" id="nu_soat" name="nu_soat" class="form-control" ng-model="vehiculo.nu_soat">                    
+                                    </div>  
+                                </div>
+                            </div>  
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">                                
+                                        <fieldset class="form-group">
+                                            <label>CIA. Seg. SOAT</label> 
+                                            <select class="form-control" id="cia_soat_seg" ng-model="vehiculo.cia_soat_seg">
+                                                <option value="1">Recogida</option>
+                                                <option value="2">Reparto</option>                                                
+                                            </select>
+                                        </fieldset>
+                                    </div>  
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group" id="content_fe_servicio" ng-controller="Datepicker">                                                
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-link" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>                                    
+                                        </span>
+                                        <input disabled="" name="fecha_vencimiento_soat" value="{{vehiculo.fecha_vencimiento_soat}}" id="fecha_vencimiento_soat" placeholder="Venc. SOAT" type="text" class="form-control" datepicker-popup="{{format}}" show-button-bar="false" ng-model="vehiculo.fecha_vencimiento_soat" is-open="opened" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Cerrar" />                                
+                                    </div>  
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Nº Tarjeta Operacion</label> 
+                                        <input  placeholder="Nº T/Operacion" type="text" value="{{vehiculo.nu_tarjeta_operacion}}" id="nu_tarjeta_operacion" name="nu_tarjeta_operacion" class="form-control" ng-model="vehiculo.nu_tarjeta_operacion">                    
+                                    </div>  
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group" id="content_fecha_vencimiento_tarjeta_operacion" ng-controller="Datepicker">                                                
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-link" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>                                    
+                                        </span>
+                                        <input disabled="" name="fecha_vencimiento_tarjeta_operacion" value="{{vehiculo.fecha_vencimiento_tarjeta_operacion}}" id="fecha_vencimiento_tarjeta_operacion" placeholder="Venc. SOAT" type="text" class="form-control" datepicker-popup="{{format}}" show-button-bar="false" ng-model="vehiculo.fecha_vencimiento_tarjeta_operacion" is-open="opened" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Cerrar" />                                
+                                    </div>  
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Nº R/Tecnomecanica</label> 
+                                        <input  placeholder="Nº R/Tecnomecanica" type="text" value="{{vehiculo.nu_tecnomecanica}}" id="nu_tecnomecanica" name="nu_tecnomecanica" class="form-control" ng-model="vehiculo.nu_tecnomecanica">                    
+                                    </div>  
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group" id="content_fe_servicio" ng-controller="Datepicker">                                                
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-link" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>                                    
+                                        </span>
+                                        <input disabled="" name="fecha_vencimiento_tecnomecanica" value="{{vehiculo.fecha_vencimiento_tecnomecanica}}" id="fecha_vencimiento_tecnomecanica" placeholder="Venc. Tecnomecanica" type="text" class="form-control" datepicker-popup="{{format}}" show-button-bar="false" ng-model="vehiculo.fecha_vencimiento_tecnomecanica" is-open="opened" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Cerrar" />                                
+                                    </div>  
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Propietario</label> 
+                                        <input required=""  placeholder="Propietario" type="text" id="propietario" value="{{vehiculo.propietario}}" name="propietario" class="form-control" ng-model="vehiculo.propietario" required>                    
+                                    </div>  
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Conductor</label> 
+                                        <input required=""  placeholder="Conductor" type="text" id="conductor" value="{{vehiculo.conductor}}" name="conductor" class="form-control" ng-model="vehiculo.conductor" required>                    
+                                    </div>  
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Activar</label> 
+                                        <input type="checkbox" id="nb_status" name="nb_status" class="checkbox" ng-model="vehiculo.nb_status">                    
+                                    </div>  
+                                </div>
+                            </div>
+
+
+                            <hr />
+
+                            <button class="btn btn-default" ng-click="agregarVehiculo(vehiculo)" ng-disabled="nuevo_servicio_ajax_form.$invalid">Actualizar Vehiculo</button>
+                            <button type="button" class="btn btn-danger">Cancelar</button>	
+
+                            <br />
+                            <br />
+                            <br />
+                        </div>
+                    </form>	
+
+                </div>                        
+            </div>
+        </div>
+    </div>
+</div>
+

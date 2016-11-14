@@ -1,0 +1,101 @@
+<ol class="breadcrumb">    
+    <li><a href="#">Inicio</a></li>
+    <li class="active">Servicios</li>
+</ol>
+
+<nav>
+    <ul class="pager">
+        <li class="previous"><a href="javascript:window.history.back()"><span aria-hidden="true">&larr;</span>Atr&aacute;s</a></li>    
+    </ul>
+</nav>
+
+<div data-ng-controller="ServicioController" data-ng-init="getServiceId()">     
+    <div class="panel-body">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#home" data-toggle="tab">Servicio <span class="badge">{{service.nu_servicio}}</span></a>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane fade active in" id="home">
+                <div class="page-header">                
+
+                    <div class="row">                                                       
+                        <div class="col-md-3">                                                   
+                            <div style="background-color: #bbe7b5; border-radius: 5%">
+                                <label>STATUS : OK</label>                            
+                            </div>
+                        </div>
+                    </div>        
+
+                    <br />
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label>Nº Servicio </label>
+                            <div class="form-group">                                                
+                                <input class="form-control" type="text" value="{{service.nu_servicio}}" disabled />
+                            </div>
+                        </div>                                                
+
+                        <!--DATOS DEL CIENTE-->
+                        <div class="col-md-6">
+                            <label>Cliente / Razon Social </label>
+                            <div class="form-group">                                                
+                                <input class="form-control" type="text" value="{{service.cedula_cliente}}" disabled />
+                            </div>
+                        </div>
+
+                        <!--FECHA SERVICIO-->
+                        <div class="col-md-3">
+                            <label>Fecha Servicio </label>
+                            <div class="form-group">                                                
+                                <input class="form-control" type="text" value="{{service.fe_servicio}}" disabled />
+                            </div>
+                        </div>
+                    </div>
+
+                    <br />
+
+                    <div class="row">
+                        <!--DIRECCION ORIGEN-->
+                        <div class="col-md-6">
+                            <label>Direccion Origen </label>
+                            <div class="form-group">                                                
+                                <input class="form-control" type="text" value="{{service.dir_origen}}" disabled />
+                            </div>
+                        </div>
+
+                        <!--DIRECCION DESTINO-->
+                        <div class="col-md-6">
+                            <label>Direccion Destino </label>
+                            <div class="form-group">                                                
+                                <input class="form-control" type="text" value="{{service.dir_destino}}" disabled />
+                            </div>
+                        </div>                    
+                    </div>
+
+                    <br />
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label>Hora de Reporte </label>
+                            <div class="form-group">                                                
+                                <input class="form-control" type="text" value="{{service.hr_reporte}}" disabled />
+                            </div>
+                        </div>
+
+                        <!--TXT_OBSERVACION-->
+                        <div class="col-md-9">
+                            <label>Observacion </label>                        
+                            <div class="form-group">                                                
+                                <input class="form-control" type="text" value="{{service.txt_observacion}}" disabled />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>                        
+            </div>
+        </div>
+    </div>
+</div>
+

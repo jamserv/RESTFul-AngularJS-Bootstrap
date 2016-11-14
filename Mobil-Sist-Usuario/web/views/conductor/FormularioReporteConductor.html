@@ -1,0 +1,78 @@
+<ol class="breadcrumb">
+    <li><a href="#">Inicio</a></li>
+    <li class="">Conductor</li>
+    <li class="active">Reporte</li>
+</ol>
+
+<nav>
+    <ul class="pager">
+        <li class="previous"><a href="javascript:window.history.back()"><span aria-hidden="true">&larr;</span>Atr&aacute;s</a></li>    
+    </ul>
+</nav>
+
+<div class="panel-body">
+    <ul class="nav nav-tabs">
+        <li class=""><a href="#/conductores" data-toggle="tab">Conductor</a>
+        </li>
+        <li class=""><a href="#/agregar-conductor" data-toggle="tab">Nuevo</a>
+        </li>
+        <li class=""><a href="#/" data-toggle="tab">Pendientes</a>
+        </li>
+        <li class="active"><a href="#/reporte-conductor" data-toggle="tab">Reporte</a>
+        </li>
+    </ul>   
+
+
+    <div class="tab-content">
+        <div class="tab-pane fade active in" id="home">
+            <div class="page-header">
+                <h4>Reporte de Conductores <small>Genera reporte de Conductores disponibles</small></h4>
+            </div>
+
+            <form role="form" name="myForm" novalidate>
+                <div data-ng-controller="ServicioController">                                          
+                    <div class="row">                      
+                        <div class="col-md-6">                        	
+                            <div class="form-group">
+                                <label>Cliente / Razon Social</label> 
+                                <input required="" placeholder="Ingrese los datos" type="text" id="cedula_cliente" name="cedula_cliente" class="form-control" ng-model="servicio.cedula_cliente" required>                    
+                            </div>  				                        
+                        </div>  
+                    </div>  
+                    <div class="row">                      
+                        <div class="col-md-4">
+                            <div class="form-group" id="content_fe_servicio" ng-controller="Datepicker">                                                
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-link" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                    <!--<button type="button" class="btn btn-circle" style="padding: 4px 12px; margin-left: -31px;" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>-->
+                                </span>
+                                <input name="fe_servicio" id="fe_servicio" placeholder="Fecha del Servicio" type="text" class="form-control" datepicker-popup="{{format}}" show-button-bar="false" ng-model="servicio.fe_servicio" is-open="opened" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Cerrar" disabled="" required=""/>
+                                <!--<input name="fe_servicio" id="fe_servicio" type="text" class="form-control" style="height: 23px; float:left;" id="fechaFinalizacionFaseII" datepicker-popup="{{format}}" show-button-bar="false" ng-model="servicio.fe_servicio" is-open="opened" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Cerrar" />-->                 
+                            </div>  
+                        </div> 
+
+                        <div class="col-md-4">
+                            <div class="form-group" id="content_hr_reporte" ng-controller="Datepicker">                                                
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-link" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                    <!--<button type="button" class="btn btn-circle" style="padding: 4px 12px; margin-left: -31px;" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>-->
+                                </span>
+                                <input name="hr_reporte" id="hr_reporte" placeholder="Hora de Reporte" type="text" class="form-control" datepicker-popup="{{format}}" show-button-bar="false" ng-model="servicio.hr_reporte" is-open="opened" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Cerrar" disabled="" required=""/>
+                                <!--<input name="fe_servicio" id="fe_servicio" type="text" class="form-control" style="height: 23px; float:left;" id="fechaFinalizacionFaseII" datepicker-popup="{{format}}" show-button-bar="false" ng-model="servicio.fe_servicio" is-open="opened" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Cerrar" />-->                 
+                            </div>  
+                        </div>             
+                    </div>
+                    <br />
+                    <br />                
+                    <!--<button class="btn btn-default" ng-click="GenerarServicio(servicio)" ng-disabled="myForm.$invalid">Generar Reporte .PDF</button>-->
+                    <button class="btn btn-default" ng-click="getReporte(servicio)" ng-disabled="myForm.$invalid">Generar Reporte .PDF</button>
+                    <button type="button" class="btn btn-danger">Cancelar</button>
+                    <br />
+                    <br />
+                </div>
+            </form>              
+        </div>
+    </div>
+</div>
+
+

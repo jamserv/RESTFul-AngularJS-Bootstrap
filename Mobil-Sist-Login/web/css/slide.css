@@ -1,0 +1,34 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 08/06/2015, 02:38:06 PM
+    Author     : lcampo
+*/
+.slide {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+.slide.ng-enter,
+.slide.ng-leave {
+    -webkit-transition: all 1s ease;
+    transition: all 1s ease;
+}
+.slide.ng-enter {
+    left: 100%;
+}
+.slide.ng-enter-active {
+    left: 0;
+}
+.slide.ng-leave {
+    left: 0;
+}
+.slide.ng-leave-active {
+    left: -100%;
+}
+

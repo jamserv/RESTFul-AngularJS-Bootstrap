@@ -1,0 +1,47 @@
+<ol class="breadcrumb">
+    <li><a href="#">Inicio</a></li>
+    <li class="active">Conductor</li>
+</ol>
+
+<nav>
+    <ul class="pager">
+        <li class="previous"><a href="javascript:window.history.back()"><span aria-hidden="true">&larr;</span>Atr&aacute;s</a></li>    
+    </ul>
+</nav>
+
+<div class="panel-body">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#/conductores" data-toggle="tab">Conductor</a>
+        </li>
+        <li class=""><a href="#/agregar-conductor" data-toggle="tab">Nuevo</a>
+        </li>
+        <li class=""><a href="#/" data-toggle="tab">Pendientes</a>
+        </li>
+        <li class=""><a href="#/reporte-conductor" data-toggle="tab">Reporte</a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="tab-pane fade active in" id="home">
+            <div class="page-header">
+                <h4>Conductores <small>Lista de conductores disponibles</small></h4>
+            </div>
+            <div data-ng-controller="ControllerConductor" data-ng-init="getAllConductores()">      
+                <!--Table--> 
+                <table id="tablaAllConductor" class="display" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th style="width: 5px;">Nº Conductor</th>
+                            <th style="width: 10px;">Nº Identificacion</th>
+                            <th style="width: 10px;">Nombre</th>
+                            <th style="width: 20px;">Status</th>
+                            <th style="width: 15px;">Nº Telefono</th>                            
+                            <th style="width: 10px;">Detalle</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
